@@ -1,7 +1,6 @@
 
 class Logger {
-    public:
-        Logger() {};
-        virtual ~Logger() {};
-    
+ public:
+  Logger(){};
+  virtual ~Logger(){};
 };

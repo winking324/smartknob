@@ -9,32 +9,32 @@
 #include "task.h"
 
 class DisplayTask : public Task<DisplayTask> {
-    friend class Task<DisplayTask>; // Allow base Task to invoke protected run()
+  friend class Task<DisplayTask>;  // Allow base Task to invoke protected run()
 
-    public:
-        DisplayTask(const uint8_t task_core);
-        ~DisplayTask();
+ public:
+  DisplayTask(const uint8_t task_core);
+  ~DisplayTask();
 
-        QueueHandle_t getKnobStateQueue();
+  QueueHandle_t getKnobStateQueue();
 
-        void setBrightness(uint16_t brightness);
+  void setBrightness(uint16_t brightness);
 
-    protected:
-        void run();
+ protected:
+  void run();
 
-    private:
-        TFT_eSPI tft_ = TFT_eSPI();
+ private:
+  TFT_eSPI tft_ = TFT_eSPI();
 
-        /** Full-size sprite used as a framebuffer */
-        TFT_eSprite spr_ = TFT_eSprite(&tft_);
+  /** Full-size sprite used as a framebuffer */
+  TFT_eSprite spr_ = TFT_eSprite(&tft_);
 
-        QueueHandle_t knob_state_queue_;
+  QueueHandle_t knob_state_queue_;
 
-        KnobState state_;
+  KnobState state_;
 
-        SemaphoreHandle_t mutex_;
+  SemaphoreHandle_t mutex_;
 
-        uint16_t brightness_;
+  uint16_t brightness_;
 };
 
 #else
